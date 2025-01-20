@@ -11,7 +11,7 @@ public class LeftHandMazeSolver implements MazeSolver {
         throw new UnsupportedOperationException("Unimplemented method 'solveMaze'");
     }
 
-    public Maze next(Maze maze) {
+    private void next(Maze maze) {
         throw new UnsupportedOperationException("Unimplemented method 'next'");
 
     }
