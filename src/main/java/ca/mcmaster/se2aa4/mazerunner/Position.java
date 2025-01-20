@@ -29,4 +29,19 @@ public class Position {
         this.y = y;
     }
 
+    public Position move(Direction direction) {
+        switch (direction) {
+            case UP:
+                return new Position(x, y - 1);
+            case DOWN:
+                return new Position(x, y + 1);
+            case LEFT:
+                return new Position(x - 1, y);
+            case RIGHT:
+                return new Position(x + 1, y);
+            default:
+                throw new IllegalStateException("Unexpected value: " + direction);
+        }
+    }
+
 }

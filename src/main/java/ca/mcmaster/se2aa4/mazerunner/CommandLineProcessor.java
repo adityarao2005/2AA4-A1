@@ -1,11 +1,31 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CommandLineProcessor {
+    private static final Logger logger = LogManager.getLogger();
 
     public CommandLine run(String[] args) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        logger.trace("Parsing command line arguments");
+        // Create a command line parser
+        CommandLineParser parser = new DefaultParser();
+        Options options = new Options();
+
+        // Add options
+        options.addOption("i", true, "File path");
+        options.addOption("p", false, "Print the maze");
+
+        // Get the command line options
+        try {
+            return parser.parse(options, args);
+        } finally {
+            logger.trace("Finished parsing command line arguments");
+        }
     }
 
 }
