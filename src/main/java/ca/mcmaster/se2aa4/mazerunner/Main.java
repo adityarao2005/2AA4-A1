@@ -26,7 +26,6 @@ public class Main {
 
             // Get the file path
             String filePath = cmdLine.getOptionValue("i");
-            System.out.println(cmdLine.getOptionValue("p"));
 
             // Display the maze
             Maze maze = MazeExtractor.extractMaze(filePath);

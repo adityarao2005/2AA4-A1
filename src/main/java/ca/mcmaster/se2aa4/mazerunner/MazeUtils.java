@@ -71,12 +71,18 @@ public class MazeUtils {
                 continue;
             } else {
                 // If the character is different from the current character, append the current
-                for (int j = 0; j < count; j++) {
-                    builder.append(current);
-                }
+                if (count > 1)
+                    builder.append(count);
+                builder.append(current);
                 current = path.charAt(i);
+                count = 1;
             }
         }
+
+        // Add the last character
+        if (count > 1)
+            builder.append(count);
+        builder.append(current);
 
         String factoredPath = builder.toString();
 
