@@ -4,16 +4,21 @@ public class Maze {
     private CellType[][] maze;
 
     public Maze(char[][] maze) {
-        this.maze = new CellType[maze.length][];
+        this.maze = new CellType[maze.length][maze[0].length];
 
         for (int i = 0; i < maze.length; i++) {
-            this.maze[i] = new CellType[maze[i].length];
+            // Fill the row with the correct CellType
             for (int j = 0; j < maze[i].length; j++) {
                 if (maze[i][j] == '#') {
                     this.maze[i][j] = CellType.WALL;
                 } else if (maze[i][j] == ' ') {
                     this.maze[i][j] = CellType.PASSAGE;
                 }
+            }
+
+            // Fill the rest of the row with PASSAGE
+            for (int j = maze[i].length; j < this.maze[0].length; j++) {
+                this.maze[i][j] = CellType.PASSAGE;
             }
         }
 
@@ -24,11 +29,11 @@ public class Maze {
     }
 
     public CellType getCellType(Position position) {
-        return maze[position.getX()][position.getY()];
+        return maze[position.getY()][position.getX()];
     }
 
     public Position getDimensions() {
-        return new Position(maze.length, maze[0].length);
+        return new Position(maze[0].length, maze.length);
     }
 
     public boolean isWall(Position position) {

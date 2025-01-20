@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class CommandLineProcessor {
     private static final Logger logger = LogManager.getLogger();
 
-    public CommandLine run(String[] args) throws Exception {
+    public CommandLine process(String[] args) throws Exception {
         logger.trace("Parsing command line arguments");
         // Create a command line parser
         CommandLineParser parser = new DefaultParser();
@@ -18,7 +18,7 @@ public class CommandLineProcessor {
 
         // Add options
         options.addOption("i", true, "File path");
-        options.addOption("p", false, "Print the maze");
+        options.addOption("p", true, "Check the path");
 
         // Get the command line options
         try {

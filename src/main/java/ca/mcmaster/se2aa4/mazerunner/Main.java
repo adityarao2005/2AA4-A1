@@ -1,5 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,27 +18,32 @@ public class Main {
             // Get file path
             CommandLineProcessor processor = new CommandLineProcessor();
 
-            CommandLine cmdLine = processor.run(args);
+            CommandLine cmdLine = processor.process(args);
             if (!cmdLine.hasOption("i")) {
                 logger.error("Missing required option: i");
                 System.exit(1);
             }
+
             // Get the file path
             String filePath = cmdLine.getOptionValue("i");
+            System.out.println(cmdLine.getOptionValue("p"));
 
             // Display the maze
             Maze maze = MazeExtractor.extractMaze(filePath);
             maze.displayMaze();
 
+            logger.info("Computing path");
+
             // Perform the maze walker if -p is provided
             if (cmdLine.hasOption("p")) {
                 // Get the path
                 String path = cmdLine.getOptionValue("p");
+
                 MazeWalker walker = new MazeWalker();
                 if (walker.verifyPath(maze, path)) {
                     System.out.println("correct path");
                 } else {
-                    System.out.println("incorrent path");
+                    System.out.println("incorrect path");
                 }
             } else {
                 // Perform maze solver if -p is not provided
@@ -44,12 +52,11 @@ public class Main {
                 String path = solver.solveMaze(maze);
                 System.out.println(path);
             }
+
+            logger.trace("End of MazeRunner");
         } catch (Exception e) {
             logger.error("/!\\ An error has occured /!\\");
             e.printStackTrace();
         }
-        logger.info("**** Computing path");
-        logger.error("PATH NOT COMPUTED");
-        logger.trace("End of MazeRunner");
     }
 }
