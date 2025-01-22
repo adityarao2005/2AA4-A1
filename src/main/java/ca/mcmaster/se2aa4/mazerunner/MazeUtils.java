@@ -21,11 +21,8 @@ public class MazeUtils {
             // If the character is a digit, store it in the number variable
             if (Character.isDigit(current)) {
                 number = Character.getNumericValue(path.charAt(i));
-                // If the character is a space, skip it
-            } else if (current == ' ') {
-                continue;
                 // If the character is an F, L, or R, append it to the builder
-            } else {
+            } else if (current != ' ') {
                 // If the number variable is greater than 0, append the character to the builder
                 // that many times
                 if (number > 0) {
@@ -43,7 +40,7 @@ public class MazeUtils {
 
         String canonicalPath = builder.toString();
 
-        logger.info("Canonical path: " + canonicalPath);
+        logger.trace("Canonical path: " + canonicalPath);
         logger.trace("Exiting toCanonicalPath method");
         // Return the canonical path
         return canonicalPath;
@@ -65,11 +62,8 @@ public class MazeUtils {
             // variable
             if (path.charAt(i) == current) {
                 count++;
-                continue;
                 // If the character is a space, skip it
-            } else if (current == ' ') {
-                continue;
-            } else {
+            } else if (current != ' ') {
                 // If the character is different from the current character, append the current
                 if (count > 1)
                     builder.append(count);
@@ -86,7 +80,7 @@ public class MazeUtils {
 
         String factoredPath = builder.toString();
 
-        logger.info("Factored path: " + factoredPath);
+        logger.trace("Factored path: " + factoredPath);
         logger.trace("Exiting toFactoredPath method");
         // Return the canonical path
         return factoredPath;
