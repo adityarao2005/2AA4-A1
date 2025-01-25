@@ -47,7 +47,7 @@ public class Main {
             } else {
                 // Perform maze solver if -p is not provided
                 // Use left hand maze solver for now
-                MazeSolver solver = new RightHandMazeSolver();
+                MazeSolver solver = new MVPMazeSolver();
                 String path = solver.solveMaze(maze);
                 System.out.println(path);
             }
