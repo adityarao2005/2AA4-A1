@@ -1,8 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,7 +44,7 @@ public class Main {
             } else {
                 // Perform maze solver if -p is not provided
                 // Use left hand maze solver for now
-                MazeSolver solver = new MVPMazeSolver();
+                MazeSolver solver = new RightHandMazeSolver();
                 String path = solver.solveMaze(maze);
                 System.out.println(path);
             }
