@@ -47,9 +47,9 @@ public class LeftHandMazeSolver implements MazeSolver {
             // =======| |
             // When there is no wall in the front and no wall in the left
             // What to do? turn left and go straight 1
-            boolean leftWall = maze.isWall(position.move(direction.moveLeft()));
-            boolean frontWall = maze.isWall(position.move(direction));
-            boolean rightWall = maze.isWall(position.move(direction.moveRight()));
+            boolean leftWall = maze.getCellType(position.move(direction.moveLeft())).isWall();
+            boolean frontWall = maze.getCellType(position.move(direction)).isWall();
+            boolean rightWall = maze.getCellType(position.move(direction.moveRight())).isWall();
 
             // Case 1, 2 - turn left since no left wall
             if (!leftWall) {

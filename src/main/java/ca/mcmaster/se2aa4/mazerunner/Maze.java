@@ -9,11 +9,7 @@ public class Maze {
         for (int i = 0; i < maze.length; i++) {
             // Fill the row with the correct CellType
             for (int j = 0; j < maze[i].length; j++) {
-                if (maze[i][j] == '#') {
-                    this.maze[i][j] = CellType.WALL;
-                } else if (maze[i][j] == ' ') {
-                    this.maze[i][j] = CellType.PASSAGE;
-                }
+                this.maze[i][j] = CellType.fromChar(maze[i][j]);
             }
 
             // Fill the rest of the row with PASSAGE
@@ -36,10 +32,6 @@ public class Maze {
         return new Position(maze[0].length, maze.length);
     }
 
-    public boolean isWall(Position position) {
-        return getCellType(position) == CellType.WALL;
-    }
-
     public void displayMaze() {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[i].length; j++) {
@@ -55,7 +47,7 @@ public class Maze {
 
     public Position getStartPosition() {
         for (int i = 0; i < maze.length; i++) {
-            if (!isWall(new Position(0, i))) {
+            if (!getCellType(new Position(0, i)).isWall()) {
                 return new Position(0, i);
             }
         }
@@ -63,6 +55,6 @@ public class Maze {
     }
 
     public boolean isEndPosition(Position position) {
-        return (position.getX() == maze[0].length - 1) && !isWall(position);
+        return (position.getX() == maze[0].length - 1) && !getCellType(position).isWall();
     }
 }

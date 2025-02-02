@@ -47,13 +47,9 @@ public class RightHandMazeSolver implements MazeSolver {
             // =======| |
             // When there is no wall in the front and no wall in the left
             // What to do? turn left and go straight 1
-            var rotatedleft = position.move(direction.moveLeft());
-            var rotatedRight = position.move(direction.moveRight());
-            var forward = position.move(direction);
-            boolean leftWall = maze.isWall(rotatedleft);
-            boolean frontWall = maze.isWall(forward);
-            boolean rightWall = maze.isWall(rotatedRight);
-
+            boolean leftWall = maze.getCellType(position.move(direction.moveLeft())).isWall();
+            boolean frontWall = maze.getCellType(position.move(direction)).isWall();
+            boolean rightWall = maze.getCellType(position.move(direction.moveRight())).isWall();
 
             // Case 3, 2 - turn left since no right wall
             if (!rightWall) {
