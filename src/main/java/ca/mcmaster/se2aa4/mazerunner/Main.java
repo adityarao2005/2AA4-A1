@@ -26,7 +26,7 @@ public class Main {
 
             // Display the maze
             Maze maze = MazeExtractor.extractMaze(filePath);
-            maze.displayMaze();
+            // maze.displayMaze();
 
             logger.info("Computing path");
 
