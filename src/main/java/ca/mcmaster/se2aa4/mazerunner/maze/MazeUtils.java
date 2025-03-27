@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.mazerunner;
+package ca.mcmaster.se2aa4.mazerunner.maze;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +20,12 @@ public class MazeUtils {
             char current = path.charAt(i);
             // If the character is a digit, store it in the number variable
             if (Character.isDigit(current)) {
-                number = Character.getNumericValue(path.charAt(i));
+                if (number == -1) {
+                    number = Character.getNumericValue(path.charAt(i));
+                } else {
+                    number *= 10;
+                    number += Character.getNumericValue(path.charAt(i));
+                }
                 // If the character is an F, L, or R, append it to the builder
             } else if (current != ' ') {
                 // If the number variable is greater than 0, append the character to the builder

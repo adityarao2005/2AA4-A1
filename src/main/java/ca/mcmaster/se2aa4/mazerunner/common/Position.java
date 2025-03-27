@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.mazerunner;
+package ca.mcmaster.se2aa4.mazerunner.common;
 
 public class Position {
     private int x;
@@ -42,6 +42,10 @@ public class Position {
             default:
                 throw new IllegalStateException("Unexpected value: " + direction);
         }
+    }
+
+    public boolean isInBounds(Position dimensions) {
+        return x >= 0 && x < dimensions.getX() && y >= 0 && y < dimensions.getY();
     }
 
     @Override
