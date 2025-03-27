@@ -25,7 +25,7 @@ public class PathTest {
 
         logger.info("Maze Dimensions: {}\n", maze.getDimensions());
     }
-    
+
     @Test
     public void testPathEquivalence() {
         String factoredPath = solver.solveMaze(maze);
@@ -36,4 +36,30 @@ public class PathTest {
         logger.info("New Factored Path: {}", newFactoredPath);
         assertEquals(factoredPath, newFactoredPath);
     }
+
+    @Test
+    public void testToCanonical() {
+        String factoredPath = "5F 3L 2F 4R 5F";
+        String canonicalPath = MazeUtils.toCanonicalPath(factoredPath);
+        assertEquals("FFFFFLLLFFRRRRFFFFF", canonicalPath);
+
+        factoredPath = "10F 3R F";
+        canonicalPath = MazeUtils.toCanonicalPath(factoredPath);
+        assertEquals("FFFFFFFFFFRRRF", canonicalPath);
+    }
+
+    @Test
+    public void testToFactored() {
+        String canonicalPath = "FFFFFLLLFFRRRRFFFFF";
+        String factoredPath = MazeUtils.toFactoredPath(canonicalPath);
+        assertEquals("5F3L2F4R5F", factoredPath);
+
+        canonicalPath = "FFFFFFFFFFRRRF";
+        factoredPath = MazeUtils.toFactoredPath(canonicalPath);
+        assertEquals("10F3RF", factoredPath);
+    }
 }
+
+// TODO: Iterator pattern - iterate over the path
+// TODO: Factory pattern - create a maze
+// TODO: Maybe talk about chain of responsibility pattern
