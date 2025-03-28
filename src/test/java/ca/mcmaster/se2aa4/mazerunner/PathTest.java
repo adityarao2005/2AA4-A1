@@ -12,6 +12,7 @@ import ca.mcmaster.se2aa4.mazerunner.maze.Maze;
 import ca.mcmaster.se2aa4.mazerunner.maze.MazeExtractor;
 import ca.mcmaster.se2aa4.mazerunner.maze.MazeUtils;
 import ca.mcmaster.se2aa4.mazerunner.maze.Path;
+import ca.mcmaster.se2aa4.mazerunner.maze.PathInstruction;
 import ca.mcmaster.se2aa4.mazerunner.solver.MazeSolver;
 import ca.mcmaster.se2aa4.mazerunner.solver.RightHandMazeSolver;
 
@@ -67,6 +68,25 @@ public class PathTest {
         assertEquals(noSpaceFactoredPath, path.toFactoredForm());
         assertEquals(canonicalPath, path.toCanonicalForm(true));
         assertEquals(noSpaceCanonicalPath, path.toCanonicalForm());
+    }
+
+    @Test
+    public void testPathInstruction() {
+        assertEquals('F', PathInstruction.FORWARD.toCharacter());
+        assertEquals('L', PathInstruction.LEFT.toCharacter());
+        assertEquals('R', PathInstruction.RIGHT.toCharacter());
+
+        assertEquals("F", PathInstruction.FORWARD.toString());
+        assertEquals("L", PathInstruction.LEFT.toString());
+        assertEquals("R", PathInstruction.RIGHT.toString());
+
+        assertEquals(PathInstruction.fromCharacter('F'), PathInstruction.FORWARD);
+        assertEquals(PathInstruction.fromCharacter('L'), PathInstruction.LEFT);
+        assertEquals(PathInstruction.fromCharacter('R'), PathInstruction.RIGHT);
+
+        assertEquals(PathInstruction.fromString("F"), PathInstruction.FORWARD);
+        assertEquals(PathInstruction.fromString("L"), PathInstruction.LEFT);
+        assertEquals(PathInstruction.fromString("R"), PathInstruction.RIGHT);
     }
 }
 
