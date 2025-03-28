@@ -16,24 +16,22 @@ public class MazeWalker {
         Direction direction = Direction.RIGHT;
         Position position = maze.getStartPosition();
 
-        path = MazeUtils.toCanonicalPath(path);
+        Path newPath = new Path(path);
 
-        // Initialize the direction and position
-        for (int i = 0; i < path.length(); i++) {
+        // Iterate through the path
+        for (PathInstruction instruction : newPath) {
             // Get the first position
-            char c = path.charAt(i);
+            char c = instruction.toCharacter();
             // If the character is not a valid character
             if (c == 'L') {
+                // Turn left
                 direction = direction.moveLeft();
-                logger.info("L - Current Direction {}", direction);
             } else if (c == 'R') {
+                // Turn right
                 direction = direction.moveRight();
-                logger.info("R - Current Direction {}", direction);
             } else if (c == 'F') {
                 // Move the position
-
                 Position newPosition = position.move(direction);
-                logger.info("F - Current Position {}, New position {}", position, newPosition);
 
                 // If the new position is a wall
                 if (!newPosition.isInBounds(maze.getDimensions())) {
