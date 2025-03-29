@@ -89,6 +89,3 @@ public class PathTest {
         assertEquals(PathInstruction.fromString("R"), PathInstruction.RIGHT);
     }
 }
-
-// TODO: Factory pattern - create a maze
-// TODO: Maybe talk about chain of responsibility pattern
