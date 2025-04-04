@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.mazerunner.maze;
+package ca.mcmaster.se2aa4.mazerunner.maze.path;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -66,7 +66,7 @@ public class Path implements Iterable<PathInstruction> {
         for (int i = 1; i < path.size(); i++) {
             // If the character is the same as the current character, increment the number
             // variable
-            if (path.get(i) == current) {
+            if (path.get(i).equals(current)) {
                 count++;
                 // If the character is a space, skip it
             } else {
@@ -108,7 +108,7 @@ public class Path implements Iterable<PathInstruction> {
         // If the character is a space, skip it
         for (int i = 1; i < path.size(); i++) {
             // If the character is different from the current character
-            if (path.get(i) != current) {
+            if (!path.get(i).equals(current)) {
                 // Add a space if needed
                 if (withSpaces)
                     sb.append(" ");

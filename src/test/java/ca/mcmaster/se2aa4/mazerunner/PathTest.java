@@ -11,8 +11,11 @@ import org.junit.jupiter.api.Test;
 import ca.mcmaster.se2aa4.mazerunner.maze.Maze;
 import ca.mcmaster.se2aa4.mazerunner.maze.MazeExtractor;
 import ca.mcmaster.se2aa4.mazerunner.maze.MazeUtils;
-import ca.mcmaster.se2aa4.mazerunner.maze.Path;
-import ca.mcmaster.se2aa4.mazerunner.maze.PathInstruction;
+import ca.mcmaster.se2aa4.mazerunner.maze.path.ForwardInstruction;
+import ca.mcmaster.se2aa4.mazerunner.maze.path.LeftInstruction;
+import ca.mcmaster.se2aa4.mazerunner.maze.path.Path;
+import ca.mcmaster.se2aa4.mazerunner.maze.path.PathInstruction;
+import ca.mcmaster.se2aa4.mazerunner.maze.path.RightInstruction;
 import ca.mcmaster.se2aa4.mazerunner.solver.MazeSolver;
 import ca.mcmaster.se2aa4.mazerunner.solver.RightHandMazeSolver;
 
@@ -72,20 +75,17 @@ public class PathTest {
 
     @Test
     public void testPathInstruction() {
-        assertEquals('F', PathInstruction.FORWARD.toCharacter());
-        assertEquals('L', PathInstruction.LEFT.toCharacter());
-        assertEquals('R', PathInstruction.RIGHT.toCharacter());
+        PathInstruction forward = new ForwardInstruction();
+        PathInstruction left = new LeftInstruction();
+        PathInstruction right = new RightInstruction();
 
-        assertEquals("F", PathInstruction.FORWARD.toString());
-        assertEquals("L", PathInstruction.LEFT.toString());
-        assertEquals("R", PathInstruction.RIGHT.toString());
+        assertEquals('F', forward.toCharacter());
+        assertEquals('L', left.toCharacter());
+        assertEquals('R', right.toCharacter());
 
-        assertEquals(PathInstruction.fromCharacter('F'), PathInstruction.FORWARD);
-        assertEquals(PathInstruction.fromCharacter('L'), PathInstruction.LEFT);
-        assertEquals(PathInstruction.fromCharacter('R'), PathInstruction.RIGHT);
+        assertEquals("F", forward.toString());
+        assertEquals("L", left.toString());
+        assertEquals("R", right.toString());
 
-        assertEquals(PathInstruction.fromString("F"), PathInstruction.FORWARD);
-        assertEquals(PathInstruction.fromString("L"), PathInstruction.LEFT);
-        assertEquals(PathInstruction.fromString("R"), PathInstruction.RIGHT);
     }
 }

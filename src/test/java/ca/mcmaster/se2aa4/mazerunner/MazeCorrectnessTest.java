@@ -20,7 +20,6 @@ public class MazeCorrectnessTest {
     @Test
     public void testPathEquivalence() throws Exception {
         MazeSolver solver = new RightHandMazeSolver();
-        MazeWalker walker = new MazeWalker();
 
         File directory = new File("examples");
         File[] mazes = directory.listFiles();
@@ -31,7 +30,8 @@ public class MazeCorrectnessTest {
 
             String path = solver.solveMaze(maze);
             logger.info("Path: {}", path);
-            assertTrue(walker.verifyPath(maze, path));
+            MazeWalker walker = new MazeWalker(maze, path);
+            assertTrue(walker.verifyPath());
         }
     }
 

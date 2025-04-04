@@ -41,8 +41,8 @@ public class Main {
                 // Get the path
                 String path = cmdLine.getOptionValue("p");
 
-                MazeWalker walker = new MazeWalker();
-                if (walker.verifyPath(maze, path)) {
+                MazeWalker walker = new MazeWalker(maze, path);
+                if (walker.verifyPath()) {
                     System.out.println("correct path");
                 } else {
                     System.out.println("incorrect path");
